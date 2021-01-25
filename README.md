@@ -1,2 +1,2 @@
 # DialogEngine
-Branching dialog engine
+A branching conditional dialog engine.
