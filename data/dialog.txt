@@ -1,0 +1,69 @@
+#001
+IMG: Mutant
+TEXT: Nobody get's in here without an invitation.
+REPLY: (Menace) I'm not giving you an invitation. [CONDITION:"MenaceTrait"=true][SPECIAL_COLOR][GOTO:004]
+REPLY: (Invitation) Give invitation. [CONDITION:"Invitation"=have_item][SPECIAL_COLOR][ACTION:"Invitation"=take_item][GOTO:003]
+REPLY: I dont have an invitation. [CONDITION:"Invitation"=no_item][GOTO:002]
+REPLY: Go to test area [GOTO:005]
+REPLY: Leave
+
+#002
+IMG: Mutant Angry
+TEXT: Well fuck off then.
+REPLY: Leave.
+REPLY: Restart [GOTO:001]
+
+#003
+IMG: Mutant Grinning
+TEXT: Ok, you have the invitation, now give me 20 credits, then you may enter.
+REPLY: Pay 20 credits[CONDITION:"Credits">=20][ACTION:"Credits"-20][GOTO:004]
+REPLY: I don't have 20 credits. [CONDITION:"Credits"<20][GOTO:002]
+REPLY: Leave.
+REPLY: Restart [GOTO:001]
+
+#004
+IMG: Mutant Laughing
+TEXT: Come on in then.
+REPLY: Enter the club.[FUSION_ACTION:"EnterClub"]
+REPLY: Restart [GOTO:001]
+
+#005
+IMG: TEST AREA
+TEXT: main menu
+REPLY: Items [GOTO:006]
+REPLY: Values [GOTO:007]
+REPLY: Flags [GOTO:008]
+REPLY: Restart [GOTO:001]
+
+#006
+IMG: TEST AREA
+TEXT: item commands
+REPLY: Give Invitation [ACTION:"Invitation"=give_item][GOTO:006]
+REPLY: Take Invitation (unless a quantity is specified, it takes all) [ACTION:"Invitation"=take_item][GOTO:006]
+REPLY: Give 24 Handgun bullets [ACTION:"HandgunBullets"=give_item24][GOTO:006]
+REPLY: Take 24 Handgun bullets [ACTION:"HandgunBullets"=take_item24][GOTO:006]
+REPLY: This response displays because you have handgun bullets[CONDITION:"HandgunBullets">0][GOTO:006]
+REPLY: This response displays because you have 0 handgun bullets[CONDITION:"HandgunBullets"==0][GOTO:006]
+REPLY: This response displays because you have more than 24 handgun bullets[CONDITION:"HandgunBullets">24][GOTO:006]
+REPLY: This response displays because you have less or equal than 24 handgun bullets[CONDITION:"HandgunBullets"<=24][GOTO:006]
+REPLY: Back [GOTO:005]
+
+#007
+IMG: TEST AREA
+TEXT: value commands
+REPLY: This response displays because you have exactly 100 health[CONDITION:"Health"==100][GOTO:007]
+REPLY: This response displays because you do not have exactly 100 health[CONDITION:"Health"!=100][GOTO:007]
+REPLY: Give 10 Health [ACTION:"Health"+10][GOTO:007]
+REPLY: Take 10 Health [ACTION:"Health"-10][GOTO:007]
+REPLY: Set Health to 50 [ACTION:"Health"=50][GOTO:007]
+REPLY: Back [GOTO:005]
+
+#008
+IMG: TEST AREA
+TEXT: value commands
+REPLY: This response displays because MenaceTrait is FALSE (or does not exist)[CONDITION:"MenaceTrait"==false][GOTO:008]
+REPLY: This response displays because MenaceTrait is TRUE[CONDITION:"MenaceTrait"==true][GOTO:008]
+REPLY: Set MenaceTrait to TRUE [ACTION:"MenaceTrait"=true][GOTO:008]
+REPLY: Set MenaceTrait to FALSE [ACTION:"MenaceTrait"=false][GOTO:008]
+REPLY: Back [GOTO:005]
+

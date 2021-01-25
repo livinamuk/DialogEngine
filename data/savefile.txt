@@ -1,0 +1,5 @@
+MenaceTrait=true
+Credits=50
+Health=100
+Invitation=give1
+HandgunBullets=give24
